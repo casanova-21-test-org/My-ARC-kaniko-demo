@@ -2,7 +2,7 @@ name: Kaniko build
 on: workflow_dispatch
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: casanova-21-test-org-runner-scaleset-1
     steps:
       - uses: actions/checkout@master
       - name: Kaniko build
