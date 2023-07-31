@@ -1,1 +1,1 @@
-# My-ARC-kaniko-demo
+# ARC-kaniko-demo
