@@ -19,4 +19,6 @@ jobs:
           echo "Context: ${{ github.repositoryUrl }}#${{ github.ref }}#${{ github.sha }}"
           /kaniko/executor --dockerfile="./Dockerfile" \
           --context="${{ github.repositoryUrl }}#${{ github.ref }}#${{ github.sha }}" \
+          --cache=true \
+          --cache-repo=casanova21/cache \
           --destination=casanova21/runner:latest
