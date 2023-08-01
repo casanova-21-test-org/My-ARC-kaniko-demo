@@ -4,7 +4,7 @@ jobs:
   kaniko_build:
     runs-on: casanova-21-test-org-runner-scaleset-1
     container:
-      image: gcr.io/kaniko-project/executor
+      image: gcr.io/kaniko-project/executor:v1.9.1-debug
     permissions:
       contents: read
       packages: write
