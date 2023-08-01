@@ -1,17 +1,17 @@
 name: Kaniko build
 on: workflow_dispatch
 jobs:
-  docker:
+  kaniko_build:
     runs-on: casanova-21-test-org-runner-scaleset-1
     container:
-      image: ubuntu
+      image: gcr.io/kaniko-project/executor
     steps:
-      - uses: actions/checkout@master
-      - name: Kaniko build
-        uses: aevea/action-kaniko@master
-        with:
-          image: casanova21/runner
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          cache: true
-          cache_registry: casanova21/cache
+      - name: Kaniko build and push
+          AUTH=$(echo -n ${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_PASSWORD }} | base64)
+          echo "{\"auths\": {\"https://docker.io/v1/\": {\"auth\": \"${AUTH}\"}}}" > /kankiko/.docker/config.json
+          export GIT_USERNAME="oauth2"
+          export GIT_PASSWORD="${{ secrets.GITHUB_TOKEN }}"
+          echo "Context: ${{ github.repositoryUrl }}#${{ github.ref }}#${{ github.sha }}"
+          /kaniko/executor --dockerfile="./Dockerfile" \
+          --context="${{ github.repositoryUrl }}#${{ github.ref }}#${{ github.sha }}" \
+          --destination=casanova21/runner:latest
