@@ -12,6 +12,7 @@ jobs:
       - name: Kaniko build and push
         run: |
           AUTH=$(echo -n ${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_PASSWORD }} | base64)
+          mkdir -p /kaniko/.docker
           echo "{\"auths\": {\"https://docker.io/v1/\": {\"auth\": \"${AUTH}\"}}}" > /kankiko/.docker/config.json
           export GIT_USERNAME="oauth2"
           export GIT_PASSWORD="${{ secrets.GITHUB_TOKEN }}"
