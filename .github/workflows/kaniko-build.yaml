@@ -5,6 +5,9 @@ jobs:
     runs-on: casanova-21-test-org-runner-scaleset-1
     container:
       image: gcr.io/kaniko-project/executor
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Kaniko build and push
         run: |
