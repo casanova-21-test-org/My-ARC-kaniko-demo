@@ -3,11 +3,11 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-jammy as build
 
 ARG TARGETOS=linux
 ARG TARGETARCH=arm64
-ARG RUNNER_VERSION=2.307.1
+ARG RUNNER_VERSION=2.311.0
 ARG RUNNER_CONTAINER_HOOKS_VERSION=0.3.2
 ARG DOCKER_VERSION=20.10.23
 
-RUN apt update -y && apt install curl unzip -y
+RUN apt update -y && apt install git curl unzip -y
 
 WORKDIR /actions-runner
 RUN export RUNNER_ARCH=${TARGETARCH} \
