@@ -1,5 +1,5 @@
 name: Kaniko build
-on: workflow_dispatch
+on: push
 jobs:
   kaniko_build:
     runs-on: kp-runners
