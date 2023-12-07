@@ -46,7 +46,7 @@ RUN adduser --disabled-password --gecos "" --uid 1001 runner \
     && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
     && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
 
-WORKDIR /home/runner
+WORKDIR /home/runner/tmp
 
 COPY --chown=runner:docker --from=build /actions-runner .
 
