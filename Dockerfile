@@ -7,7 +7,7 @@ ARG RUNNER_VERSION=2.307.1
 ARG RUNNER_CONTAINER_HOOKS_VERSION=0.3.2
 ARG DOCKER_VERSION=20.10.23
 
-RUN apt update -y && apt install curl unzip gcc make -y
+RUN apt update -y && apt install curl unzip -y
 
 WORKDIR /actions-runner
 RUN export RUNNER_ARCH=${TARGETARCH} \
@@ -36,7 +36,7 @@ ENV ACTIONS_RUNNER_PRINT_LOG_TO_STDOUT=1
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
     sudo \
-    lsb-release \
+    lsb-release gcc make \
     && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --disabled-password --gecos "" --uid 1001 runner \
