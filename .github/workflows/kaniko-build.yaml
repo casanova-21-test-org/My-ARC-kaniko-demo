@@ -2,7 +2,7 @@ name: Kaniko build
 on: workflow_dispatch
 jobs:
   kaniko_build:
-    runs-on: kp-runners
+    runs-on: ubuntu-latest
     container:
       image: gcr.io/kaniko-project/executor:v1.9.1-debug
     permissions:
